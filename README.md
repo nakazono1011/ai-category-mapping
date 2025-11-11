@@ -50,10 +50,14 @@ TURSO_AUTH_TOKEN=your_turso_auth_token
 
 ```bash
 # マイグレーション実行
-pnpm drizzle-kit migrate --config=drrizle.config.ts
+pnpm db:migrate
 
-# カテゴリデータの投入
-TURSO_DATABASE_URL="file:./db/local/local.db" TURSO_AUTH_TOKEN="local" pnpm tsx scripts/seed-categories.ts
+# カテゴリデータの投入（ローカル環境）
+pnpm db:seed:local
+
+# カテゴリデータの投入（本番環境）
+# 環境変数 TURSO_DATABASE_URL と TURSO_AUTH_TOKEN が設定されている場合
+pnpm db:seed
 ```
 
 ### 4. 開発サーバーの起動
@@ -66,10 +70,12 @@ pnpm dev
 
 ## 使用方法
 
-1. ホーム画面で改行区切りで商品名を入力（最大100行）
+1. ホーム画面で改行区切りで商品名を入力（最大30行）
 2. 「マッピング実行」ボタンをクリック
 3. 各モールのカテゴリIDとフルパスが自動的に割り当てられます
 4. 結果を確認し、「クリップボードにコピー」または「CSVダウンロード」でエクスポート
+
+**31件以上の商品名のマッピングをご希望の場合は、[お問い合わせフォーム](https://www.smile-comfort.com#contact)よりご連絡ください。**
 
 ## プロジェクト構造
 

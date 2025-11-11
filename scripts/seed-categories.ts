@@ -5,6 +5,12 @@ import { createClient } from "@libsql/client";
 import { categories } from "../db/schema";
 import { nanoid } from "nanoid";
 import iconv from "iconv-lite";
+import { config } from "dotenv";
+import { resolve } from "node:path";
+
+// .env.localと.envを読み込む（.env.localが優先）
+config({ path: resolve(process.cwd(), ".env.local") });
+config({ path: resolve(process.cwd(), ".env") });
 
 const client = createClient({
 	url: process.env.TURSO_DATABASE_URL || "file:./db/local/local.db",
